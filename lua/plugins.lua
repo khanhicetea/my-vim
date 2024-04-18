@@ -97,8 +97,25 @@ require("lazy").setup({
                 function(server_name) -- default handler (optional)
                     require("lspconfig")[server_name].setup {}
                 end,
-                ["rust_analyzer"] = function()
-                    -- require("rust_analyzer").setup {}
+                ["intelephense"] = function()
+                    require("lspconfig")["intelephense"].setup {
+                        init_options = {
+                            licenceKey = os.getenv('INTELEPHENSE_KEY'),
+                        },
+                        settings = {
+                            intelephense = {
+                                telemetry = {
+                                    enabled = false,
+                                },
+                                completion = {
+                                    fullyQualifyGlobalConstantsAndFunctions = false
+                                },
+                                phpdoc = {
+                                    returnVoid = false,
+                                }
+                            },
+                        }
+                    }
                 end
             }
         end
