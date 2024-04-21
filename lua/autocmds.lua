@@ -30,7 +30,6 @@ function SendMsgToSocket()
 	end
 end
 
--- Set up an autocommand to trigger the function when entering Normal mode
 vim.api.nvim_create_augroup("SendMsgOnNormalMode", { clear = true })
 vim.api.nvim_create_autocmd("ModeChanged", {
 	group = "SendMsgOnNormalMode",

@@ -60,7 +60,7 @@ require("lazy").setup({
 				function()
 					require("telescope.builtin").lsp_document_symbols()
 				end,
-				desc = "Goto Symbol",
+				desc = "Find Symbols in document",
 			},
 		},
 	},
@@ -182,7 +182,6 @@ require("lazy").setup({
 					completeopt = "menu,menuone,noinsert",
 				},
 				mapping = cmp.mapping.preset.insert({
-					["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
 					["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
 					["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
 					["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -190,11 +189,7 @@ require("lazy").setup({
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<C-e>"] = cmp.mapping.abort(),
-					["<CR>"] = cmp.mapping.confirm({ select = true }),
-					["<S-CR>"] = cmp.mapping.confirm({
-						behavior = cmp.ConfirmBehavior.Replace,
-						select = true,
-					}),
+					["<C-y>"] = cmp.mapping.confirm({ select = true }),
 					["<C-CR>"] = function(fallback)
 						cmp.abort()
 						fallback()
@@ -455,5 +450,19 @@ require("lazy").setup({
 				mode = { "i", "s" },
 			},
 		},
+	},
+	{
+		"echasnovski/mini.indentscope",
+		version = "*",
+		init = function()
+			require("mini.indentscope").setup()
+		end,
+	},
+	{
+		"echasnovski/mini.pairs",
+		version = "*",
+		init = function()
+			require("mini.pairs").setup()
+		end,
 	},
 })
