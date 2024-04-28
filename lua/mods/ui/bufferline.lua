@@ -1,0 +1,30 @@
+return {
+    "akinsho/bufferline.nvim",
+    event = "VeryLazy",
+    version = "*",
+    keys = {
+        { "<S-h>",      "<cmd>BufferLineCyclePrev<cr>",   desc = "Prev buffer line" },
+        { "<S-L>",      "<cmd>BufferLineCycleNext<cr>",   desc = "Next buffer line" },
+        { "<Leader>bo", "<cmd>BufferLineCloseOthers<cr>", desc = "Close other buffer lines" },
+        { "<Leader>bd", "<cmd>bd<cr>",                    desc = "Close current buffer line" },
+    },
+    opts = {
+        options = {
+            right_mouse_command = function(n)
+                require("mini.bufremove").delete(n, false)
+            end,
+            always_show_bufferline = true,
+            offsets = {
+                {
+                    filetype = "neo-tree",
+                    text = "Neo-tree",
+                    highlight = "Directory",
+                    text_align = "left",
+                },
+            },
+        },
+    },
+    config = function(_, opts)
+        require("bufferline").setup(opts)
+    end,
+}
