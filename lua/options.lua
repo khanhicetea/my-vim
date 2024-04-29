@@ -9,6 +9,8 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 vim.opt.wrap = false
+vim.opt.signcolumn = "yes"
+vim.opt.termguicolors = true
 
 vim.opt.expandtab = true
 vim.opt.tabstop = 4
