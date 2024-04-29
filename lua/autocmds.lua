@@ -14,3 +14,15 @@ vim.api.nvim_create_autocmd("ModeChanged", {
         pcall(SendMsgToSocket)
     end,
 })
+
+-- Terminal
+-- Switch to insert mode when terminal is open
+vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter" }, {
+    -- TermOpen: for when terminal is opened for the first time
+    -- BufEnter: when you navigate to an existing terminal buffer
+    group = vim.api.nvim_create_augroup("Terminal", { clear = true }),
+    pattern = "term://*", --> only applicable for "BufEnter", an ignored Lua table key when evaluating TermOpen
+    callback = function()
+        vim.cmd("startinsert")
+    end
+})

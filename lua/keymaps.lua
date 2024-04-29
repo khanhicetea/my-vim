@@ -29,3 +29,7 @@ map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 
 -- quit
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+
+-- Esc
+map("n", "<ESC>", "<CMD>nohlsearch<CR>")
+map("t", "<ESC><ESC>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
