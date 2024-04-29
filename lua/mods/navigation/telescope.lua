@@ -1,3 +1,16 @@
+function vim.getVisualSelection()
+    vim.cmd('noau normal! "vy"')
+    local text = vim.fn.getreg('v')
+    vim.fn.setreg('v', {})
+
+    text = string.gsub(text, "\n", "")
+    if #text > 0 then
+        return text
+    else
+        return ''
+    end
+end
+
 return {
     {
         "nvim-telescope/telescope-fzf-native.nvim",
@@ -22,9 +35,28 @@ return {
             },
         },
         keys = {
-            { "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Grep (Root Dir)" },
+            {
+                "<leader>/",
+                function()
+                    local text = vim.getVisualSelection()
+                    require('telescope.builtin').live_grep({ default_text = text })
+                end,
+                desc = "Grep selected",
+                mode = { "v" }
+            },
+            { "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Grep (Root Dir)", mode = { "n" } },
             { "<leader>o", "<cmd>Telescope oldfiles<cr>",  desc = "Find Old Files" },
-            { "<leader>p", "<cmd>Telescope git_files<cr>", desc = "Find Git Files" },
+            {
+                "<leader>p",
+                function()
+                    local text = vim.getVisualSelection()
+                    text = text:gsub("[^%w]", " ")
+                    require('telescope.builtin').git_files({ default_text = text })
+                end,
+                desc = "Find Git Files",
+                mode = { "v" }
+            },
+            { "<leader>p", "<cmd>Telescope git_files<cr>", desc = "Find Git Files", mode = { "n" } },
             {
                 "<leader>t",
                 function()
