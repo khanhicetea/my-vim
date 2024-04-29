@@ -8,15 +8,11 @@ return {
             end,
         },
         {
-            "nvim-cmp",
-            dependencies = {
-                "saadparwaiz1/cmp_luasnip",
-            },
+            "saadparwaiz1/cmp_luasnip"
         },
-    },
-    opts = {
-        history = true,
-        delete_check_events = "TextChanged",
+        {
+            "nvim-cmp"
+        },
     },
     keys = {
         {

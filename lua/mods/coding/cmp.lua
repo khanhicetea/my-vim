@@ -13,7 +13,7 @@ return {
 
         return {
             completion = {
-                completeopt = "menu,menuone,noinsert",
+                completeopt = "menu,menuone,noinsert,preview",
             },
             mapping = cmp.mapping.preset.insert({
                 ["<C-Space>"] = cmp.mapping.complete(),
