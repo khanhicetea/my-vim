@@ -1,6 +1,6 @@
 return {
     "lewis6991/gitsigns.nvim",
     init = function()
-        require("gitsigns").setup({})
+        require("gitsigns").setup()
     end,
 }

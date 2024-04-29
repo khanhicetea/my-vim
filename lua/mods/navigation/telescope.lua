@@ -32,6 +32,27 @@ return {
                 end,
                 desc = "Find Symbols in document",
             },
+            {
+                "<leader>d",
+                function()
+                    require("telescope.builtin").diagnostics({ bufnr = 0 })
+                end,
+                desc = "Show diagnostics in current buffer",
+            },
+            {
+                "<leader>q",
+                function()
+                    require("telescope.builtin").quickfix()
+                end,
+                desc = "Show quickfix in current buffer",
+            },
+            {
+                "gr",
+                function()
+                    require("telescope.builtin").lsp_references()
+                end,
+                desc = "Show lsp_references",
+            },
         },
     }
 }
