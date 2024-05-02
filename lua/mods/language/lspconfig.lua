@@ -8,16 +8,11 @@ return {
 		require("mason").setup()
 		require("mason-lspconfig").setup({
 			ensure_installed = {
-				"blade-formatter",
 				"cssls",
 				"emmet_ls",
 				"html",
 				"intelephense",
-				"pint",
-				"prettierd",
-				"shfmt",
 				"sqlls",
-				"stylua",
 				"twiggy_language_server",
 				"tsserver",
 				"volar",
