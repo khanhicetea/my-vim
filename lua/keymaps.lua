@@ -34,3 +34,7 @@ map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 -- Esc
 map("n", "<ESC>", "<CMD>nohlsearch<CR>")
 map("t", "<ESC><ESC>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
+-- php keymaps
+map("i", "<C-;>", "<Right>;", { noremap = true })
+map("i", "<C-[>", "<Right><Space>{}<Left><CR><CR><Up><Tab>", { noremap = true })

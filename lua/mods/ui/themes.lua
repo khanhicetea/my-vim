@@ -1,18 +1,18 @@
 return {
 	-- lowest theme will be loaded
 	{
-		"folke/tokyonight.nvim",
+		"catppuccin/nvim",
+		name = "catppuccin",
 		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme("tokyonight-moon")
+			vim.cmd.colorscheme("catppuccin-frappe")
 		end,
 	},
 	{
-		"catppuccin/nvim",
-		name = "catppuccin",
+		"folke/tokyonight.nvim",
 		priority = 1001,
 		config = function()
-			vim.cmd.colorscheme("catppuccin-latte")
+			vim.cmd.colorscheme("tokyonight-day")
 		end,
 	},
 }
