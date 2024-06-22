@@ -57,6 +57,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.api.nvim_exec(
     [[
 autocmd FileType php set iskeyword+=$
+autocmd FileType php setlocal commentstring=//\ %s
 ]],
     false
 )
