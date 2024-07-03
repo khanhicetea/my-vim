@@ -47,7 +47,7 @@ return {
             { "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Grep (Root Dir)", mode = { "n" } },
             { "<leader>o", "<cmd>Telescope oldfiles<cr>",  desc = "Find Old Files" },
             {
-                "<leader>p",
+                "<leader>f",
                 function()
                     local text = vim.getVisualSelection()
                     text = text:gsub("[^%w]", " ")
@@ -56,7 +56,7 @@ return {
                 desc = "Find Git Files",
                 mode = { "v" }
             },
-            { "<leader>p", "<cmd>Telescope git_files<cr>", desc = "Find Git Files", mode = { "n" } },
+            { "<leader>f", "<cmd>Telescope git_files<cr>", desc = "Find Git Files", mode = { "n" } },
             {
                 "<leader>t",
                 function()
