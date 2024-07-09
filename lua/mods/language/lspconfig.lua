@@ -1,3 +1,4 @@
+-- local logger = require("plenary.log").new({ plugin = "my_plugin", level = "info", use_console = "sync" })
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -47,9 +48,11 @@ return {
                 })
             end,
             ["intelephense"] = function()
+                local intelephense_key = os.getenv("INTELEPHENSE_KEY")
+
                 require("lspconfig")["intelephense"].setup({
                     init_options = {
-                        licenceKey = os.getenv("INTELEPHENSE_KEY"),
+                        licenceKey = intelephense_key,
                     },
                     settings = {
                         intelephense = {
