@@ -71,7 +71,7 @@ return {
                                     "**/vendor/**/{Tests,tests}/**",
                                     "**/.history/**",
                                     "**/vendor/**/vendor/**",
-                                    "**/packages/**",
+                                    -- "**/packages/**",
                                 },
                             },
                             telemetry = {
