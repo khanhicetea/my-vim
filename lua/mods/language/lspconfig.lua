@@ -13,7 +13,7 @@ return {
                 "emmet_ls",
                 "lua_ls",
                 "html",
-                "intelephense",
+                "intelephense@1.11.0",
                 "sqlls",
                 "twiggy_language_server",
                 "tsserver",
