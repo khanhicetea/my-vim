@@ -1,0 +1,2 @@
+(heredoc) @javascript
+
