@@ -16,7 +16,7 @@ return {
                 "intelephense@1.11.0",
                 "sqlls",
                 "twiggy_language_server",
-                "tsserver",
+                "ts_ls",
                 "volar",
                 "yamlls",
                 "markdown_oxide",
