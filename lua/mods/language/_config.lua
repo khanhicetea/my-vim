@@ -10,6 +10,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         local opts = { buffer = ev.buf }
         vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+        vim.keymap.set("n", "gv", ':vsplit | lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })
         vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
         vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
         vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
@@ -40,27 +41,21 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 vim.api.nvim_create_autocmd("LspAttach", {
     pattern = "*.blade.php",
     callback = function(args)
-        vim.schedule(function()
-            -- Check if the attached client is 'intelephense'
-            for _, client in ipairs(vim.lsp.get_active_clients()) do
-                if client.name == "intelephense" and client.attached_buffers[args.buf] then
-                    vim.api.nvim_buf_set_option(args.buf, "filetype", "blade")
-                    -- update treesitter parser to blade
-                    vim.api.nvim_buf_set_option(args.buf, "syntax", "blade")
-                    break
-                end
-            end
-        end)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client and client.name == "intelephense" then
+            vim.api.nvim_set_option_value("filetype", "blade", { buf = args.buf })
+            vim.api.nvim_set_option_value("syntax", "blade", { buf = args.buf })
+        end
     end,
 })
 
-vim.api.nvim_exec(
-    [[
-autocmd FileType php set iskeyword+=$
-autocmd FileType php setlocal commentstring=//\ %s
-]],
-    false
-)
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "php",
+    callback = function()
+        vim.opt.iskeyword:append("$")
+        vim.opt_local.commentstring = "// %s"
+    end,
+})
 
 -- Return empty
 
