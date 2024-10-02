@@ -13,7 +13,9 @@ return {
         formatters_by_ft = {
             lua = { "stylua" },
             python = { "isort", "black" },
-            javascript = { { "prettierd", "prettier" } },
+            javascript = { { "prettier" } },
+            typescript = { { "prettier" } },
+            typescriptreact = { { "prettier" } },
             blade = { "blade-formatter", "rustywind" },
         },
         formatters = {
