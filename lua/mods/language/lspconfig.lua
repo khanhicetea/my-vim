@@ -10,13 +10,13 @@ return {
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "cssls",
-                "emmet_ls",
+                -- "emmet_ls",
                 "lua_ls",
                 "html",
                 "intelephense",
                 "sqlls",
                 "twiggy_language_server",
-                -- "ts_ls",
+                "ts_ls",
                 -- "volar",
                 "yamlls",
                 "markdown_oxide",
@@ -25,8 +25,6 @@ return {
                 "tailwindcss",
             },
         })
-
-        local mason_registry = require("mason-registry")
 
         require("mason-lspconfig").setup_handlers({
             function(server_name) -- default handler (optional)
@@ -87,42 +85,43 @@ return {
                     },
                 })
             end,
-            -- ["ts_ls"] = function()
-            -- require("lspconfig")["ts_ls"].setup({})
+            ["ts_ls"] = function()
+                require("lspconfig")["ts_ls"].setup({})
 
-            -- Hybrid mode (for Vue)
-            -- local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
-            --     .. "/node_modules/@vue/language-server"
-            --
-            -- require("lspconfig")["tsserver"].setup({
-            --     init_options = {
-            --         plugins = {
-            --             {
-            --                 name = "@vue/typescript-plugin",
-            --                 location = vue_language_server_path,
-            --                 languages = { "vue" },
-            --                 -- configNamespace = "typescript",
-            --                 -- enableForWorkspaceTypeScriptVersions = true,
-            --             },
-            --         },
-            --     },
-            --     filetypes = {
-            --         "typescript",
-            --         "javascript",
-            --         "javascriptreact",
-            --         "typescriptreact",
-            --         "vue",
-            --     },
-            -- })
-            -- end,
+                -- Hybrid mode (for Vue)
+                -- local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
+                --     .. "/node_modules/@vue/language-server"
+                --
+                -- require("lspconfig")["tsserver"].setup({
+                --     init_options = {
+                --         plugins = {
+                --             {
+                --                 name = "@vue/typescript-plugin",
+                --                 location = vue_language_server_path,
+                --                 languages = { "vue" },
+                --                 -- configNamespace = "typescript",
+                --                 -- enableForWorkspaceTypeScriptVersions = true,
+                --             },
+                --         },
+                --     },
+                --     filetypes = {
+                --         "typescript",
+                --         "javascript",
+                --         "javascriptreact",
+                --         "typescriptreact",
+                --         "vue",
+                --     },
+                -- })
+            end,
             ["tailwindcss"] = function()
                 require("lspconfig")["tailwindcss"].setup({
                     settings = {
                         tailwindCSS = {
                             experimental = {
-                                classRegex = {
-                                    "class\\(['\"]([^'\"]*)['\"]\\)",
-                                },
+                                -- for php vdom
+                                -- classRegex = {
+                                --     "class\\(['\"]([^'\"]*)['\"]\\)",
+                                -- },
                             },
                         },
                     },
