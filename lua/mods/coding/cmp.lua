@@ -1,5 +1,6 @@
 return {
     "hrsh7th/nvim-cmp",
+    version = false,
     event = "InsertEnter",
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
@@ -34,11 +35,11 @@ return {
             }),
             sources = cmp.config.sources({
                 { name = "nvim_lsp" },
-                -- { name = "nvim_lsp_signature_help" },
-                { name = "luasnip" },
-            }, {
+                { name = "nvim_lsp_signature_help" },
                 { name = "buffer" },
+            }, {
                 { name = "path" },
+                { name = "luasnip" },
             }),
             snippet = {
                 expand = function(args)

@@ -16,7 +16,7 @@ return {
                 "intelephense",
                 "sqlls",
                 "twiggy_language_server",
-                "ts_ls",
+                -- "ts_ls",
                 -- "volar",
                 "yamlls",
                 "markdown_oxide",
@@ -85,7 +85,7 @@ return {
                     },
                 })
             end,
-            ["ts_ls"] = function()
+            ["ts_ls-disabled"] = function()
                 require("lspconfig")["ts_ls"].setup({})
 
                 -- Hybrid mode (for Vue)
