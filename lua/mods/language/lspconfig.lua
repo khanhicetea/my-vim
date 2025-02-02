@@ -6,7 +6,12 @@ return {
         { "williamboman/mason-lspconfig.nvim" },
     },
     config = function()
-        require("mason").setup()
+        require("mason").setup({
+            ensure_installed = {
+                "prettier",
+            }
+        })
+
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "cssls",
@@ -85,34 +90,34 @@ return {
                     },
                 })
             end,
-            ["ts_ls-disabled"] = function()
-                require("lspconfig")["ts_ls"].setup({})
+            -- ["ts_ls-disabled"] = function()
+            --     require("lspconfig")["ts_ls"].setup({})
 
-                -- Hybrid mode (for Vue)
-                -- local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
-                --     .. "/node_modules/@vue/language-server"
-                --
-                -- require("lspconfig")["tsserver"].setup({
-                --     init_options = {
-                --         plugins = {
-                --             {
-                --                 name = "@vue/typescript-plugin",
-                --                 location = vue_language_server_path,
-                --                 languages = { "vue" },
-                --                 -- configNamespace = "typescript",
-                --                 -- enableForWorkspaceTypeScriptVersions = true,
-                --             },
-                --         },
-                --     },
-                --     filetypes = {
-                --         "typescript",
-                --         "javascript",
-                --         "javascriptreact",
-                --         "typescriptreact",
-                --         "vue",
-                --     },
-                -- })
-            end,
+            -- Hybrid mode (for Vue)
+            -- local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
+            --     .. "/node_modules/@vue/language-server"
+            --
+            -- require("lspconfig")["tsserver"].setup({
+            --     init_options = {
+            --         plugins = {
+            --             {
+            --                 name = "@vue/typescript-plugin",
+            --                 location = vue_language_server_path,
+            --                 languages = { "vue" },
+            --                 -- configNamespace = "typescript",
+            --                 -- enableForWorkspaceTypeScriptVersions = true,
+            --             },
+            --         },
+            --     },
+            --     filetypes = {
+            --         "typescript",
+            --         "javascript",
+            --         "javascriptreact",
+            --         "typescriptreact",
+            --         "vue",
+            --     },
+            -- })
+            -- end,
             ["tailwindcss"] = function()
                 require("lspconfig")["tailwindcss"].setup({
                     settings = {

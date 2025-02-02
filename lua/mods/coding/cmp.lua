@@ -7,6 +7,7 @@ return {
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-nvim-lsp-signature-help",
+        "codeium.nvim",
     },
     opts = function()
         local cmp = require("cmp")
@@ -25,8 +26,10 @@ return {
             preselect = auto_select and cmp.PreselectMode.Item or cmp.PreselectMode.None,
             mapping = cmp.mapping.preset.insert({
                 ["<C-Space>"] = cmp.mapping.complete(),
-                ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-                ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+                -- ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+                -- ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+                ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+                ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
                 ["<C-y>"] = cmp.mapping.confirm({ select = true }),
                 ["<CR>"] = cmp.mapping.confirm({ select = auto_select }),
                 ["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -34,6 +37,11 @@ return {
                 ["<C-e>"] = cmp.mapping.abort(),
             }),
             sources = cmp.config.sources({
+                {
+                    name = "codeium",
+                    group_index = 1,
+                    priority = 100
+                },
                 { name = "nvim_lsp" },
                 { name = "nvim_lsp_signature_help" },
                 { name = "buffer" },
