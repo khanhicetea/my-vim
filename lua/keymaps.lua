@@ -1,4 +1,8 @@
--- from lazyvim
+--- Function to create key mappings in Neovim.
+--- @param mode string|string[]: The mode(s) in which the keymap should be active.
+--- @param lhs string: The left-hand side of the keymap (the key combination).
+--- @param rhs string|function: The right-hand side of the keymap (the command or function to execute).
+--- @param opts table: Optional parameters for the keymap (e.g., description, remap options).
 local map = function(mode, lhs, rhs, opts)
     local keys = require("lazy.core.handler").handlers.keys
     ---@cast keys LazyKeysHandler
@@ -14,7 +18,9 @@ local map = function(mode, lhs, rhs, opts)
         opts = opts or {}
         opts.silent = opts.silent ~= false
         if opts.remap and not vim.g.vscode then
-            ---@diagnostic disable-next-line: no-unknown
+            -- Toggle diagnostic floating window.
+            -- If not inside a floating window, opens the diagnostic in a floating window.
+            -- If inside a floating window, closes it.
             opts.remap = nil
         end
         vim.keymap.set(modes, lhs, rhs, opts)
@@ -24,25 +30,29 @@ end
 -- toggle diagnostic
 map("n", "td", function()
     if vim.api.nvim_win_get_config(0).relative == "" then -- Not inside floating window
-        vim.diagnostic.open_float()                       -- Open diagnostic in floating window
+        -- Clear search highlights with <esc> in insert and normal modes.
         vim.diagnostic.open_float()                       -- Another call jumps into the floating window
     else                                                  -- Inside a floating window
-        vim.api.nvim_win_close(0, false)                  -- Or you can press "q" in the floating window
+        -- Save the current file in insert, visual, normal, and select modes using <C-s>.
     end
 end, { desc = "[t] Toggle diagnostic floating window" })
+-- Quit current buffer with <leader><BS> and quit all with <leader>qq.
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
 
--- Save file
+-- Clear search highlights in normal mode with <ESC>.
+-- Exit terminal mode with <ESC><ESC>.
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 
 -- quit
-map("n", "<leader><BS>", "<cmd>bd<cr>", { desc = "Quit current buffer" })
+-- PHP-specific key mappings for insert mode.
+-- Move right and insert a semicolon with <C-;>.
+-- Insert a block with braces and move inside with <C-[>.
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 
 -- Esc
-map("n", "<ESC>", "<CMD>nohlsearch<CR>")
+map("n", "<ESC>", "<CMD>nohlsearch<CR>", { desc = "Esc ignore all highlights" })
 map("t", "<ESC><ESC>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- php keymaps

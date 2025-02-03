@@ -1,3 +1,4 @@
+return {}
 -- return {
 --     "monkoose/neocodeium",
 --     event = "VeryLazy",
@@ -8,20 +9,20 @@
 --     end,
 -- }
 
-return {
-    "Exafunction/codeium.nvim",
-    cmd = "Codeium",
-    event = "InsertEnter",
-    build = ":Codeium Auth",
-    opts = {
-        enable_cmp_source = false,
-        virtual_text = {
-            enabled = true,
-            key_bindings = {
-                accept = "<Tab>", -- handled by nvim-cmp / blink.cmp
-                next = "<M-]>",
-                prev = "<M-[>",
-            },
-        },
-    },
-}
+-- return {
+--     "Exafunction/codeium.nvim",
+--     cmd = "Codeium",
+--     event = "InsertEnter",
+--     build = ":Codeium Auth",
+--     opts = {
+--         enable_cmp_source = false,
+--         virtual_text = {
+--             enabled = true,
+--             key_bindings = {
+--                 accept = "<Tab>", -- handled by nvim-cmp / blink.cmp
+--                 next = "<M-]>",
+--                 prev = "<M-[>",
+--             },
+--         },
+--     },
+-- }
